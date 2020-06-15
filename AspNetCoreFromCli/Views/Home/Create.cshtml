@@ -1,0 +1,30 @@
+﻿@model CreateStudentViewModel
+
+ 
+
+<h1>创建学生</h1>
+
+<form  method="post">
+    <div>
+        <label asp-for="FirstName"></label><input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label><input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="BirthDate"></label><input asp-for="BirthDate" />
+        <span asp-validation-for="BirthDate"></span>
+    </div>
+    <div>
+        <label asp-for="Sex"></label><select asp-for="Sex" asp-items="Html.GetEnumSelectList<AspNetCoreFromCli.Models.Sex>()">   
+        </select>
+    </div>
+    <div asp-validation-summary="All">
+
+    </div>
+    <div>
+        <button type="submit" name="save" >保存</button>
+    </div>
+</form>

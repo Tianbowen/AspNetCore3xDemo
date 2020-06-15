@@ -1,0 +1,31 @@
+﻿@model IEnumerable<StudentViewModel>
+
+    <table>
+        <thead >
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年纪</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td></td>
+                <td><a asp-action="Detail" asp-controller="Home" asp-route-id="@item.Id">详情</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        @await Component.InvokeAsync("StudentCount")
+    </div>
+<div>
+    <vc:student-count></vc:student-count>
+</div>

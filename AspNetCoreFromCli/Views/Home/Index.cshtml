@@ -1,0 +1,24 @@
+﻿@model HomeIndexViewModel
+
+
+<h1>Home Index</h1>
+
+@Html.Partial("_StudentTable", Model.StudentViewModel)
+
+<partial name="_StudentTable" for="@Model.StudentViewModel" />
+
+
+
+@*<ul>
+        @foreach (var item in Model.StudentViewModel)
+        {
+            <li>
+                id:@item.Id,Name:@item.Name,Age:(@item.Age)  <a id="ss" asp-action='Detail' asp-route-id="@item.Id">详细</a>
+            </li>
+        }
+    </ul>*@
+
+@section bottom{
+    <a asp-action="Create">添加</a>
+}
+

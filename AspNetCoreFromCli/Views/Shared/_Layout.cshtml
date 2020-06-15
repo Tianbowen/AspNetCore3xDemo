@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <environment include="Development">
+        <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css" rel="stylesheet" asp-fallback-href="~/node_modules/bootstrap/dist/css/bootstrap.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute">
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">Index</span>
+        @if (SignInManager.IsSignedIn(User))
+        {
+           
+    <label> @User.Identity.Name</label>
+    <form asp-controller="Account" asp-action="Logout" id="logoutForm" method="post">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logoutForm').submit();">登出</a>
+            </li>
+        </ul>
+    </form>
+        }
+        else
+        {
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a asp-action="Login" asp-controller="Account">登录</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Register" asp-controller="Account">注册</a>
+                </li>
+            </ul>
+        }
+    </nav>
+    <h1>123456</h1>
+
+    <div>
+        @RenderBody()
+    </div>
+    <hr />
+
+    <div>
+        @RenderSection("bottom", required: false)
+    </div>
+
+    <environment include="Development">
+        <script src="~/node_modules/jquery/dist/jquery.js"></script>
+        <script src="~/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"
+                asp-fallback-src="~/node_modules/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery"></script>
+
+
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"
+                asp-fallback-src="~/node_modules/jquery-validation/dist/jquery.validate.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator"></script>
+
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.js"
+                asp-fallback-src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"></script>
+    </environment>
+</body>
+</html>
